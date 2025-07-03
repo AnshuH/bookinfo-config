@@ -1,7 +1,7 @@
 replicaCount: 3
 image:
-  repository: localhost:5000/bookinfo-processor
-  tag: "dev"
+  repository: us-central1-docker.pkg.dev/bt-play-355619/gitops/bookinfo-processor
+  tag: "latest"
   pullPolicy: Always
 service:
   type: ClusterIP # Assuming type might still vary or want to be explicit
