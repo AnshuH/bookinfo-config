@@ -57,7 +57,7 @@ spec:
       project: default # Or your specific ArgoCD project
 
       source:
-        repoURL: 'https://github.com/muralikrishnagk/bookinfo-config.git'
+        repoURL: 'https://github.com/AnshuH/bookinfo-config.git'
         targetRevision: main # Or HEAD, or a specific branch/tag
         path: '{{path}}' # Dynamically set from the generator's 'path' field
 

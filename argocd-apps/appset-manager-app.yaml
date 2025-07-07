@@ -9,7 +9,7 @@ spec:
   project: default # Or your specific ArgoCD project
 
   source:
-    repoURL: https://github.com/muralikrishnagk/bookinfo-config.git # Your Git repo
+    repoURL: https://github.com/AnshuH/bookinfo-config.git # Your Git repo
     targetRevision: HEAD
     path: argocd-apps # Path to the directory containing bookinfo-applicationset.yaml
 
