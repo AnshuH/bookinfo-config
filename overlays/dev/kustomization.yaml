@@ -10,3 +10,8 @@ commonLabels:
   environment: dev
   app.kubernetes.io/instance: bookinfo-dev
   testing: "true"
+
+helmCharts:
+  - name: bookinfo-service
+    version: 1.0.7-SNAPSHOT
+    repo: https://github.com/AnshuH/bookinfo-charts
