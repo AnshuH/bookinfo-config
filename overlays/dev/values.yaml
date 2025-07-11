@@ -1,47 +1,54 @@
-replicaCount: 1
+# Global values for all services in dev environment
+# These values will be applied to all Helm charts in this overlay
 
+# Common image settings
 image:
-  repository: us-central1-docker.pkg.dev/bt-play-355619/gitops/bookinfo-service
-  tag: "1.0.7-SNAPSHOT"
   pullPolicy: Always
+  registry: docker.io  # or your specific registry for dev
 
-service:
-  type: ClusterIP
-  port: 80 # Default service port
-
+# Common resource settings for dev environment
 resources:
   requests:
-    cpu: "100m"
+    cpu: "100m"  
     memory: "128Mi"
   limits:
     cpu: "200m"
     memory: "256Mi"
 
-nodeSelector: {}
-
-tolerations: []
-
-# ConfigMap settings for the service
+# Common ConfigMap settings that apply to all services
 configMap:
   enabled: true
   data:
-    API_TIMEOUT: "5000"
-    MAX_CONNECTIONS: "10"
-    DB_POOL_SIZE: "3"
+    ENVIRONMENT: "dev"
     LOG_LEVEL: "info"
-    FEATURE_FLAGS: "reviews-enabled,ratings-enabled"
-    SERVICE_ENV: "default"
+    ENABLE_METRICS: "true"
+    TRACING_ENABLED: "true"
+    DEV_MODE: "true"
+    API_VERSION: "v2"
+    DEFAULT_TIMEOUT: "30000"
+    HARNESS_URL: "http://harness.io"
 
+# Common labels for all resources
+commonLabels:
+  environment: dev
+  tier: microservices
+  managed-by: helm-kustomize
+
+# Monitoring and observability
+prometheus:
+  enabled: true
+  scrapeInterval: "15s"
+
+# Common environment variables
 env:
-  - name: ENVIRONMENT
-    value: ""
+  - name: ENV_TYPE
+    value: "development"
+  - name: DEBUG
+    value: "true"
 
-livenessProbe:
-  enabled: true
-  initialDelaySeconds: 30
-  periodSeconds: 10
-
-readinessProbe:
-  enabled: true
-  initialDelaySeconds: 5
-  periodSeconds: 5
+# Service defaults
+service:
+  type: ClusterIP
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9090"
