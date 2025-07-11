@@ -17,7 +17,7 @@ helmCharts:
   releaseName: bookinfo-service
   namespace: bookinfo-dev
   version: 1.0.7-SNAPSHOT # Updated with new books API endpoint
-  repo: https://github.com/AnshuH/bookinfo-charts
+  repo: https://raw.githubusercontent.com/AnshuH/bookinfo-charts/main
   valuesFile: ../../../base/services/global-values.yaml
   additionalValuesFiles:
     - ../values.yaml # Global dev overlay values
@@ -26,8 +26,8 @@ helmCharts:
 - name: bookinfo-processor
   releaseName: bookinfo-processor
   namespace: bookinfo-dev
-  version: 0.1.4 # Updated with ConfigMap support
-  repo: https://github.com/AnshuH/bookinfo-charts
+  version: 1.0.5-SNAPSHOT # Updated with ratings processing endpoint
+  repo: https://raw.githubusercontent.com/AnshuH/bookinfo-charts/main
   valuesFile: ../../../base/services/global-values.yaml
   additionalValuesFiles:
     - ../values.yaml # Global dev overlay values
